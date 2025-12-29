@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransaksiMasuk extends Model
 {
+    protected $table = 'transaksi_masuk';
+    
     protected $fillable = [
         'tanggal',
         'supplier_id',
