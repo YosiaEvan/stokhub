@@ -4,3 +4,7 @@
 @theme {
   --font-jakarta: "Plus Jakarta Sans", sans-serif; 
 }
+
+canvas {
+  width: 100% !important;
+}

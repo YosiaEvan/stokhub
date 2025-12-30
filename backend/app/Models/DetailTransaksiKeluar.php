@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailTransaksiKeluar extends Model
 {
+    protected $table = 'detail_transaksi_keluar';
+
     protected $fillable = [
         'transaksi_keluar_id',
         'barang_id',
         'jumlah',
-        'harga_beli',
+        'harga_jual',
     ];
 
     public function transaksiKeluar()
@@ -21,5 +23,10 @@ class DetailTransaksiKeluar extends Model
     public function barang()
     {
         return $this->belongsTo(Barang::class);
+    }
+
+    public function getSubtotalAttribute()
+    {
+        return $this->jumlah * $this->harga_beli;
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransaksiKeluar extends Model
 {
+    protected $table = 'transaksi_keluar';
+
     protected $fillable = [
         'tanggal',
         'customer_id',
@@ -21,5 +23,17 @@ class TransaksiKeluar extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function details()
+    {
+        return $this->hasMany(DetailTransaksiKeluar::class);
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->details->sum(function ($detail) {
+            return $detail->jumlah * $detail->harga_beli;
+        });
     }
 }
