@@ -93,7 +93,7 @@ export default function DashboardAdmin() {
                     <div>
                         <h3 className="text-sm text-[#737B8C] mb-2">Total Items</h3>
                         <p className="text-2xl font-semibold mb-2">{totalBarang}</p>
-                        <p className={`${isGrowing ? 'text-green-500' : 'text-red-500'} text-xs`}>{isGrowing ? '+' : '-'} {persenGrowth}% from last month</p>
+                        <p className={`${isGrowing ? 'text-green-500' : 'text-red-500'} text-xs`}>{isGrowing ? '+' : ''} {persenGrowth}% from last month</p>
                     </div>
                     <div className="p-2 bg-[#e7f3f0] w-10 h-10 flex justify-center items-center rounded-xl text-green-700">
                         <i className="fa-solid fa-boxes-stacked"></i>

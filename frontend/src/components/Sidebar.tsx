@@ -19,16 +19,25 @@ export default function Sidebar({ isSidebarOpen }) {
                             <i className="fa-regular fa-house"></i>
                         </div>
                         <p className={`text-sm text-black font-medium text-nowrap pr-2 ${isSidebarOpen ? 'hidden md:block' : 'block md:hidden'}`}>Dashboard</p>
-                        <p className="text-sm text-black md:hidden pr-2">Dashboard</p>
+                        <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>Dashboard</p>
                     </NavLink>
                 </li>
-                <li>
+                <li className="mb-2">
                     <NavLink to="/user-management" className={({ isActive }) => `flex items-center w-full rounded-xl ${isActive ? "bg-[#f4f4f5] text-[#0f8a71] border border-[#c6dfdb]" : "text-black"}`}>
                         <div className="p-2 w-10 h-10 flex justify-center items-center">
                             <i className="fa-regular fa-user"></i>
                         </div>
                         <p className={`text-sm text-black font-medium text-nowrap pr-2 ${isSidebarOpen ? 'hidden md:block' : 'block md:hidden'}`}>User Management</p>
-                        <p className="text-sm text-black md:hidden text-nowrap pr-2">User Management</p>
+                        <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>User Management</p>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/item-management" className={({ isActive }) => `flex items-center w-full rounded-xl ${isActive ? "bg-[#f4f4f5] text-[#0f8a71] border border-[#c6dfdb]" : "text-black"}`}>
+                        <div className="p-2 w-10 h-10 flex justify-center items-center">
+                            <i className="fa-solid fa-box-open"></i>
+                        </div>
+                        <p className={`text-sm text-black font-medium text-nowrap pr-2 ${isSidebarOpen ? 'hidden md:block' : 'block md:hidden'}`}>Item Management</p>
+                        <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>Item Management</p>
                     </NavLink>
                 </li>
             </ul>

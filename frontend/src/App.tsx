@@ -5,6 +5,7 @@ import ProtectedRoute from './routes/ProtectedRoute'
 import AppLayout from './layouts/AppLayout'
 import DashboardAdmin from './pages/AdminDashboard'
 import UserManagement from './pages/UserManagement'
+import ItemManagement from './pages/ItemManagement'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route element={<AppLayout />}>
           <Route path="/admin-dashboard" element={<DashboardAdmin />} />
           <Route path="/user-management" element={<UserManagement />} />
+          <Route path="/item-management" element={<ItemManagement />} />
         </Route>
       </Route>
     </Routes>
