@@ -72,7 +72,7 @@ export default function LatestActivitiesTable() {
                             <td className="p-4">{item.nama_barang}</td>
                             <td className="p-4">{item.jumlah}</td>
                             <td className="p-4">
-                                <span className={`px-4 py-1 rounded-full text-xs font-semibold ${item.tipe == "masuk" ? "bg-green-100 text-green-500" : "bg-red-100 text-red-500"}`}>{item.tipe === "masuk" ? "In" : "Out"}</span>
+                                <span className={`px-4 py-1 rounded-full text-xs font-semibold ${item.tipe == "masuk" ? "bg-green-100 text-green-500" : "bg-blue-100 text-blue-500"}`}>{item.tipe === "masuk" ? "In" : "Out"}</span>
                             </td>
                             {/* <td className="p-2">
                                 <span

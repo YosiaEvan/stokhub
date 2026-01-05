@@ -13,7 +13,7 @@ export default function AppLayout() {
             )}
 
             {/* Sidebar */}
-            <aside className={`absolute md:static bg-white shadow-lg w-100 max-w-4/5 min-h-screen z-40 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${isSidebarOpen ? "md:w-64" : "md:w-20 overflow-hidden"}`}>
+            <aside className={`absolute md:static bg-white shadow-lg w-100! max-w-4/5 min-h-screen z-40 transform transition-all duration-700 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} ${isSidebarOpen ? "md:w-fit!" : "md:w-20! overflow-hidden!"}`}>
                 <Sidebar isSidebarOpen={isSidebarOpen} />
             </aside>
 
@@ -25,7 +25,7 @@ export default function AppLayout() {
                 </header>
 
                 {/* Main Content */}
-                <main className="flex-1 overflow-y-auto bg-[#f9fafb] p-6">
+                <main className="flex-1 overflow-y-auto bg-[#f9fafb] relative">
                     <Outlet />
                 </main>
             </div>

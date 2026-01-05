@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
@@ -9,7 +10,7 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const response = await api.post("/login", {
@@ -23,12 +24,16 @@ export default function Login() {
             localStorage.setItem("user", JSON.stringify(response.data.user));
 
             // contoh: redirect
-            navigate("/dashboard-admin");
+            navigate("/admin-dashboard");
         } catch (error) {
-            if (error.response?.status === 401) {
-                setErrorMessage("Incorrect email or password");
+            if (axios.isAxiosError(error)) {
+                if (error.response?.status === 401) {
+                    setErrorMessage("Incorrect email or password");
+                } else {
+                    setErrorMessage("A server error has occurred");
+                }
             } else {
-                setErrorMessage("Terjadi kesalahan server");
+                setErrorMessage("An unknown error has occured");
             }
         }
     }

@@ -83,7 +83,7 @@ export default function DashboardAdmin() {
     });
 
     return (
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 p-6">
             <div>
                 <h2 className="text-2xl font-semibold mb-2">Dashboard Admin</h2>
                 <p className="text-[#878e9d]">Welcome back! Here is a summary of your inventory.</p>

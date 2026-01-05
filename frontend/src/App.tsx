@@ -3,7 +3,8 @@ import GuestLayout from './layouts/GuestLayout'
 import Login from './pages/Login'
 import ProtectedRoute from './routes/ProtectedRoute'
 import AppLayout from './layouts/AppLayout'
-import DashboardAdmin from './pages/DashboardAdmin'
+import DashboardAdmin from './pages/AdminDashboard'
+import UserManagement from './pages/UserManagement'
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
-          <Route path="/dashboard-admin" element={<DashboardAdmin />} />
+          <Route path="/admin-dashboard" element={<DashboardAdmin />} />
+          <Route path="/user-management" element={<UserManagement />} />
         </Route>
       </Route>
     </Routes>
