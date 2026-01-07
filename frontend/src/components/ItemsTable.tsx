@@ -12,7 +12,7 @@ interface Item {
     stok_minimum: number;
 }
 
-interface UsersTableProps {
+interface ItemsTableProps {
     isOpenModalAdd: boolean;
     setIsOpenModalAdd: React.Dispatch<React.SetStateAction<boolean>>;
     refreshKey: number;
@@ -22,7 +22,7 @@ interface UsersTableProps {
     setSelectedItem: React.Dispatch<React.SetStateAction<Item | null>>;
 }
 
-export default function ItemsTable({ setIsOpenModalAdd, refreshKey, setRefreshKey, setIsOpenModalUpdate, setSelectedItem }: UsersTableProps) {
+export default function ItemsTable({ setIsOpenModalAdd, refreshKey, setRefreshKey, setIsOpenModalUpdate, setSelectedItem }: ItemsTableProps) {
     const [data, setData] = useState<Item[]>([]);
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +43,7 @@ export default function ItemsTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
             setCurrentPage(response.data.current_page);
             setLastPage(response.data.last_page);
         } catch (error) {
-            console.error("Gagal mengambil data aktivitas", error);
+            console.error("Failed to retrieve item data", error);
         } finally {
             setIsLoading(false);
         }

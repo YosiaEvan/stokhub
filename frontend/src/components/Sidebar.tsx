@@ -31,13 +31,22 @@ export default function Sidebar({ isSidebarOpen }) {
                         <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>User Management</p>
                     </NavLink>
                 </li>
-                <li>
+                <li className="mb-2">
                     <NavLink to="/item-management" className={({ isActive }) => `flex items-center w-full rounded-xl ${isActive ? "bg-[#f4f4f5] text-[#0f8a71] border border-[#c6dfdb]" : "text-black"}`}>
                         <div className="p-2 w-10 h-10 flex justify-center items-center">
                             <i className="fa-solid fa-box-open"></i>
                         </div>
                         <p className={`text-sm text-black font-medium text-nowrap pr-2 ${isSidebarOpen ? 'hidden md:block' : 'block md:hidden'}`}>Item Management</p>
                         <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>Item Management</p>
+                    </NavLink>
+                </li>
+                <li className="mb-2">
+                    <NavLink to="/supplier-management" className={({ isActive }) => `flex items-center w-full rounded-xl ${isActive ? "bg-[#f4f4f5] text-[#0f8a71] border border-[#c6dfdb]" : "text-black"}`}>
+                        <div className="p-2 w-10 h-10 flex justify-center items-center">
+                            <i className="fa-regular fa-truck"></i>
+                        </div>
+                        <p className={`text-sm text-black font-medium text-nowrap pr-2 ${isSidebarOpen ? 'hidden md:block' : 'block md:hidden'}`}>Supplier Management</p>
+                        <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>Supplier Management</p>
                     </NavLink>
                 </li>
             </ul>

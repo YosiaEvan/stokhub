@@ -2,27 +2,26 @@ import React, { useEffect, useState } from "react";
 import api from '../api/axios';
 import Swal from "sweetalert2";
 
-interface User {
-    id: number,
-    username: string,
-    name: string,
-    email: string,
-    password: string,
-    role: "admin" | "pegawai",
+interface Supplier {
+    id: number;
+    nama: string;
+    kontak: string;
+    alamat: string;
+    email: string;
 }
 
-interface UsersTableProps {
+interface SuppliersTableProps {
     isOpenModalAdd: boolean;
     setIsOpenModalAdd: React.Dispatch<React.SetStateAction<boolean>>;
     refreshKey: number;
     setRefreshKey: React.Dispatch<React.SetStateAction<number>>;
     isOpenModalUpdate: boolean;
     setIsOpenModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
-    setSelectedUser: React.Dispatch<React.SetStateAction<User | null>>;
+    setSelectedSupplier: React.Dispatch<React.SetStateAction<Supplier | null>>;
 }
 
-export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKey, setIsOpenModalUpdate, setSelectedUser }: UsersTableProps) {
-    const [data, setData] = useState<User[]>([]);
+export default function SuppliersTable({ setIsOpenModalAdd, refreshKey, setRefreshKey, setIsOpenModalUpdate, setSelectedSupplier }: SuppliersTableProps) {
+    const [data, setData] = useState<Supplier[]>([]);
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [lastPage, setLastPage] = useState(1);
@@ -31,7 +30,7 @@ export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
     const fetchData = async (page = 1, keyword = search) => {
         try {
             setIsLoading(true);
-            const response = await api.get("/user", {
+            const response = await api.get("/supplier", {
                 params: {
                     page: page,
                     search: keyword,
@@ -42,7 +41,7 @@ export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
             setCurrentPage(response.data.current_page);
             setLastPage(response.data.last_page);
         } catch (error) {
-            console.error("Failed to retrieve user data", error);
+            console.error("Failed to retrieve supplier data", error);
         } finally {
             setIsLoading(false);
         }
@@ -70,15 +69,15 @@ export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
         setIsOpenModalAdd(true);
     }
 
-    const openUpdateModal = (item: User) => {
-        setSelectedUser(item);
+    const openUpdateModal = (supplier: Supplier) => {
+        setSelectedSupplier(supplier);
         setIsOpenModalUpdate(true);
     }
 
     const handleDelete = async (id: number) => {
         const result = await Swal.fire({
             title: "Are you sure want to delete?",
-            text: "This user data cannot be recovered!",
+            text: "This supplier data cannot be recovered!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#dc2626",
@@ -90,12 +89,12 @@ export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
         if (!result.isConfirmed) return;
 
         try {
-            await api.delete(`/user/${id}`);
+            await api.delete(`/supplier/${id}`);
 
             Swal.fire({
                 icon: "success",
                 title: "Successful",
-                text: "User successfully deleted",
+                text: "Supplier successfully deleted",
                 timer: 1500,
                 showConfirmButton: false,
             })
@@ -105,7 +104,7 @@ export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
             Swal.fire({
                 icon: "error",
                 title: "Failed",
-                text: "Failed to delete user",
+                text: "Failed to delete supplier",
             });
             console.error(error);
         }
@@ -114,10 +113,10 @@ export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
     return (
         <div className="p-5 bg-white rounded-xl shadow-md w-full">
             <div className="flex flex-col md:flex-row gap-5 md:items-center justify-between mb-5">
-                <h3 className="text-lg font-semibold">Users Table</h3>
+                <h3 className="text-lg font-semibold">Suppliers Table</h3>
                 <div className="flex items-center gap-2">
-                    <input type="text" placeholder="Search user..." value={search} onChange={(e) => setSearch(e.target.value)} className="border px-3 py-2 rounded basis-1/2 w-40" />
-                    <button onClick={openAddModal} className="bg-green-500 hover:bg-green-700 text-white px-3 py-2 border border-green-500 rounded basis-1/2 transition-all duration-300"><i className="fa-solid fa-plus mr-2"></i> Add User</button>
+                    <input type="text" placeholder="Search supplier..." value={search} onChange={(e) => setSearch(e.target.value)} className="border px-3 py-2 rounded basis-1/2 w-40" />
+                    <button onClick={openAddModal} className="bg-green-500 hover:bg-green-700 text-white px-3 py-2 border border-green-500 rounded basis-1/2 transition-all duration-300"><i className="fa-solid fa-plus mr-2"></i> Add Supplier</button>
                 </div>
             </div>
             <div className="overflow-auto w-full rounded-xl">
@@ -126,10 +125,10 @@ export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
                         <thead>
                             <tr className="bg-[#f7f8f9]">
                                 <th className="p-4 text-left">No</th>
-                                <th className="p-4 text-left">Username</th>
                                 <th className="p-4 text-left">Name</th>
+                                <th className="p-4 text-left">Contact</th>
+                                <th className="p-4 text-left">Address</th>
                                 <th className="p-4 text-left">Email</th>
-                                <th className="p-4 text-left">Role</th>
                                 <th className="p-4 text-left">Action</th>
                             </tr>
                         </thead>
@@ -164,19 +163,17 @@ export default function UsersTable({ setIsOpenModalAdd, refreshKey, setRefreshKe
                                     </td>
                                 </tr>
                             ) : (
-                                data.map((item, index) => (
+                                data.map((supplier, index) => (
                                     <tr key={index} className="border-b border-[#f7f7f9]">
                                         <td className="p-4">{index+1}</td>
-                                        <td className="p-4">{item.username}</td>
-                                        <td className="p-4">{item.name}</td>
-                                        <td className="p-4">{item.email}</td>
-                                        <td className="p-4">
-                                            <span className={`px-4 py-1 rounded-full text-xs font-semibold ${item.role == "admin" ? "bg-green-100 text-green-500" : "bg-blue-100 text-blue-500"}`}>{item.role == 'admin' ? 'Admin' : 'Pegawai'}</span>
-                                        </td>
+                                        <td className="p-4">{supplier.nama}</td>
+                                        <td className="p-4">{supplier.kontak}</td>
+                                        <td className="p-4">{supplier.alamat}</td>
+                                        <td className="p-4">{supplier.email}</td>
                                         <td className="p-2">
                                             <div className="flex items-center gap-2">
-                                                <button onClick={() => openUpdateModal(item)} className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 border border-blue-500 rounded transition-all duration-300"><i className="fa-regular fa-pen-to-square mr-2"></i>Update</button>
-                                                <button onClick={() => handleDelete(item.id)} className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 border border-red-500 rounded transition-all duration-300"><i className="fa-regular fa-trash-can mr-2"></i>Delete</button>
+                                                <button onClick={() => openUpdateModal(supplier)} className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 border border-blue-500 rounded transition-all duration-300"><i className="fa-regular fa-pen-to-square mr-2"></i>Update</button>
+                                                <button onClick={() => handleDelete(supplier.id)} className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 border border-red-500 rounded transition-all duration-300"><i className="fa-regular fa-trash-can mr-2"></i>Delete</button>
                                             </div>
                                         </td>
                                     </tr>

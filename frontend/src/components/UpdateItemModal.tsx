@@ -30,7 +30,7 @@ export default function UpdateItemModal({ setIsOpen, item, setRefreshKey }: Upda
         setIsOpen(false);
     }
 
-    const handleAddItemSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleUpdateItemSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const payload: any = {
@@ -78,7 +78,7 @@ export default function UpdateItemModal({ setIsOpen, item, setRefreshKey }: Upda
                 </div>
                 {/* Form */}
                 <div className="p-5 flex-1 overflow-y-auto">
-                    <form onSubmit={handleAddItemSubmit}>
+                    <form onSubmit={handleUpdateItemSubmit}>
                         {/* Kode Barang */}
                         <div className="flex flex-col mb-2">
                             <label htmlFor="kode_barang" className="font-semibold mb-2">Item Code</label>

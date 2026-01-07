@@ -35,7 +35,7 @@ export default function Navbar({ isSidebarOpen, onToggleSidebar }) {
     return (
         <nav className="p-5 flex items-center justify-between">
             <div onClick={() => onToggleSidebar(!isSidebarOpen)} className="p-2 border border-solid border-[#e2e4e9] rounded-md cursor-pointer w-10 h-10 flex items-center justify-center">
-                <i className="fa-solid fa-bars"></i>
+                <i className="fa-light fa-table-rows"></i>
             </div>
             <div className="relative">
                 <div onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="bg-[#d5efe9] p-2 rounded-full w-10 h-10 flex items-center justify-center text-[#118b72] cursor-pointer">{userName ? userName.charAt(0).toUpperCase() : "?"}</div>
