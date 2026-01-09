@@ -25,7 +25,7 @@ export default function Sidebar({ isSidebarOpen }) {
                 <li className="mb-2">
                     <NavLink to="/user-management" className={({ isActive }) => `flex items-center w-full rounded-xl ${isActive ? "bg-[#f4f4f5] text-[#0f8a71] border border-[#c6dfdb]" : "text-black"}`}>
                         <div className="p-2 w-10 h-10 flex justify-center items-center">
-                            <i className="fa-regular fa-user"></i>
+                            <i className="fa-light fa-users"></i>
                         </div>
                         <p className={`text-sm text-black font-medium text-nowrap pr-2 ${isSidebarOpen ? 'hidden md:block' : 'block md:hidden'}`}>User Management</p>
                         <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>User Management</p>
@@ -47,6 +47,15 @@ export default function Sidebar({ isSidebarOpen }) {
                         </div>
                         <p className={`text-sm text-black font-medium text-nowrap pr-2 ${isSidebarOpen ? 'hidden md:block' : 'block md:hidden'}`}>Supplier Management</p>
                         <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>Supplier Management</p>
+                    </NavLink>
+                </li>
+                <li className="mb-2">
+                    <NavLink to="/customer-management" className={({ isActive }) => `flex items-center w-full rounded-xl ${isActive ? "bg-[#f4f4f5] text-[#0f8a71] border border-[#c6dfdb]" : "text-black"}`}>
+                        <div className="p-2 w-10 h-10 flex justify-center items-center">
+                            <i className="fa-light fa-user-check"></i>
+                        </div>
+                        <p className={`text-sm text-black font-medium text-nowrap pr-2 ${isSidebarOpen ? 'hidden md:block' : 'block md:hidden'}`}>Customer Management</p>
+                        <p className={`text-sm text-black md:hidden text-nowrap pr-2 ${!isSidebarOpen ? 'hidden' : ''}`}>Customer Management</p>
                     </NavLink>
                 </li>
             </ul>

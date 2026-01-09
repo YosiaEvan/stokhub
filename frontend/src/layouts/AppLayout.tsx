@@ -7,7 +7,7 @@ export default function AppLayout() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     return (
-        <div className="font-jakarta flex h-screen relative w-screen">
+        <div className="font-jakarta flex h-screen relative w-screen max-w-screen">
             {isSidebarOpen && (
                 <div className="fixed inset-0 bg-black/40 z-30 transition-opacity md:hidden" onClick={() => setIsSidebarOpen(false)}></div>
             )}
