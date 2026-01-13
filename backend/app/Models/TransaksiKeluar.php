@@ -13,6 +13,9 @@ class TransaksiKeluar extends Model
         'customer_id',
         'user_id',
         'keterangan',
+        'status',
+        'disetujui_oleh',
+        'disetujui_pada',
     ];
 
     public function customer()

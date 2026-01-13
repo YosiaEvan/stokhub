@@ -165,7 +165,7 @@ class SummaryController extends Controller
         $transaksiMasuk = DB::table('transaksi_masuk')
             ->join('detail_transaksi_masuk', 'detail_transaksi_masuk.transaksi_masuk_id', '=', 'transaksi_masuk.id')
             ->join('barang', 'barang.id', '=', 'detail_transaksi_masuk.barang_id')
-            ->select('barang.kode_barang', 'transaksi_masuk.tanggal', 'barang.nama_barang', 'detail_transaksi_masuk.jumlah', DB::raw("'masuk' as tipe"))
+            ->select('barang.kode_barang', 'transaksi_masuk.tanggal', 'barang.nama_barang', 'detail_transaksi_masuk.jumlah', DB::raw("'masuk' as tipe"), 'transaksi_masuk.status')
             ->orderBy('transaksi_masuk.tanggal', 'desc')
             ->limit(5)
             ->get();
@@ -173,7 +173,7 @@ class SummaryController extends Controller
         $transaksiKeluar = DB::table('transaksi_keluar')
             ->join('detail_transaksi_keluar', 'detail_transaksi_keluar.transaksi_keluar_id', '=', 'transaksi_keluar.id')
             ->join('barang', 'barang.id', '=', 'detail_transaksi_keluar.barang_id')
-            ->select('barang.kode_barang', 'transaksi_keluar.tanggal', 'barang.nama_barang', 'detail_transaksi_keluar.jumlah', DB::raw("'keluar' as tipe"))
+            ->select('barang.kode_barang', 'transaksi_keluar.tanggal', 'barang.nama_barang', 'detail_transaksi_keluar.jumlah', DB::raw("'keluar' as tipe"), 'transaksi_keluar.status')
             ->orderBy('transaksi_keluar.tanggal', 'desc')
             ->limit(5)
             ->get();

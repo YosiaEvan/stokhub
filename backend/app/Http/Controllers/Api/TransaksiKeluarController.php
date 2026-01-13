@@ -60,6 +60,9 @@ class TransaksiKeluarController extends Controller
             'customer_id' => $validated['customer_id'],
             'user_id' => $validated['user_id'],
             'keterangan' => $validated['keterangan'] ?? null,
+            'status' => 0,
+            'disetujui_oleh' => null,
+            'disetujui_pada' => null,
         ]);
 
         foreach ($validated['details'] as $detail) {

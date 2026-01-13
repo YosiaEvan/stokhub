@@ -13,6 +13,9 @@ class TransaksiMasuk extends Model
         'supplier_id',
         'user_id',
         'keterangan',
+        'status',
+        'disetujui_oleh',
+        'disetujui_pada',
     ];
 
     public function supplier()
